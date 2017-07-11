@@ -1,23 +1,13 @@
-package com.xwkj.project.domain;
+package com.xwkj.project.bean;
 
-import org.hibernate.annotations.GenericGenerator;
+import com.xwkj.project.domain.User;
+import org.directwebremoting.annotations.DataTransferObject;
 
-import javax.persistence.*;
-import java.io.Serializable;
+@DataTransferObject
+public class UserBean {
 
-@Entity
-@Table(name = "pj_user")
-public class User implements Serializable {
-
-    @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid")
     private String uid;
-
-    @Column(unique = true, nullable = false)
     private String uname;
-
-    @Column(nullable = false)
     private String password;
 
     public String getUid() {
@@ -42,6 +32,13 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public UserBean(User user) {
+        super();
+        this.uid = user.getUid();
+        this.uname = user.getUname();
+        this.password = user.getPassword();
     }
 
 }

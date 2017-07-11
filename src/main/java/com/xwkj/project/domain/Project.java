@@ -14,6 +14,15 @@ public class Project implements Serializable {
     @GenericGenerator(name = "uuid", strategy = "uuid")
     private String pid;
 
+    @Column(nullable = false)
+    private String name;
+
+    @Column(nullable = false)
+    private Long createAt;
+
+    @Column(nullable = false)
+    private Long updateAt;
+
     @Column(columnDefinition = "LONGTEXT", nullable = false)
     private String attributes;
 
@@ -30,6 +39,30 @@ public class Project implements Serializable {
 
     public void setPid(String pid) {
         this.pid = pid;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Long getCreateAt() {
+        return createAt;
+    }
+
+    public void setCreateAt(Long createAt) {
+        this.createAt = createAt;
+    }
+
+    public Long getUpdateAt() {
+        return updateAt;
+    }
+
+    public void setUpdateAt(Long updateAt) {
+        this.updateAt = updateAt;
     }
 
     public String getAttributes() {
