@@ -36,6 +36,14 @@ public interface UserManager {
     UserBean getUser(String uid);
 
     /**
+     * Get all user list for admin.
+     *
+     * @param session
+     * @return
+     */
+    List<UserBean> getAll(HttpSession session);
+
+    /**
      * 修改密码
      *
      * @param uid

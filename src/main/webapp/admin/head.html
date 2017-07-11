@@ -1,0 +1,27 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed glyphicon glyphicon-th-list" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1"></button>
+            <a class="navbar-brand" href="javascript:void(0)">工程查询系统</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul id="menu-bar" class="nav navbar-nav logined-btn">
+                <li><a href="users.html">人员管理</a></li>
+                <li><a href="projects.html">工程管理</a></li>
+                <li><a href="config.html">配置管理</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/logout/admin">退出</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<script type="text/javascript">
+    var map = {
+        users: 0,
+        projects: 1,
+        config: 2
+    }
+    $("#menu-bar>li").eq(map[getPageFullName().split(".")[0]]).addClass("active");
+</script>

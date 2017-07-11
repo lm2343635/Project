@@ -43,6 +43,17 @@ public class UserManagerImpl extends ManagerTemplate implements UserManager {
         return new UserBean(user);
     }
 
+    public List<UserBean> getAll(HttpSession session) {
+        if (!checkAdminSession(session)) {
+            return null;
+        }
+        List<UserBean> userBeans = new ArrayList<UserBean>();
+        for (User user : userDao.findAll()) {
+            userBeans.add(new UserBean(user));
+        }
+        return userBeans;
+    }
+
     @RemoteMethod
     @Transactional
     public boolean modifyPassword(String uid, String old, String password) {
