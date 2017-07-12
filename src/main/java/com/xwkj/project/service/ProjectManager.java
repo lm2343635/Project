@@ -21,21 +21,21 @@ public interface ProjectManager {
     /**
      * Admin modify a project.
      *
-     * @param did
+     * @param pid
      * @param name
      * @param attributes
      * @param content
      * @return
      */
-    boolean modifyProject(String did, String name, String attributes, String content, HttpSession session);
+    boolean modifyProject(String pid, String name, String attributes, String content, HttpSession session);
 
     /**
      * Admin remove a project.
      *
-     * @param did
+     * @param pid
      * @return
      */
-    boolean removeProject(String did, HttpSession session);
+    boolean removeProject(String pid, HttpSession session);
 
     /**
      * Search project.
@@ -57,9 +57,8 @@ public interface ProjectManager {
      * Get project detail info.
      *
      * @param pid
-     * @param session
      * @return
      */
-    ProjectBean getProject(String pid, HttpSession session);
+    ProjectBean getProject(String pid);
 
 }
