@@ -1,5 +1,6 @@
 package com.xwkj.project.service;
 
+import com.xwkj.project.component.config.Global;
 import net.sf.json.JSONObject;
 
 import javax.servlet.http.HttpSession;
@@ -31,5 +32,11 @@ public interface ConfigManager {
      */
     boolean saveConfig(String jsonString, HttpSession session);
 
+    /**
+     * Get global config.
+     *
+     * @return
+     */
+    Global getGlobal();
 
 }

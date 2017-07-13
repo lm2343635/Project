@@ -1,5 +1,6 @@
 package com.xwkj.project.service.impl;
 
+import com.xwkj.project.component.config.Global;
 import com.xwkj.project.service.ConfigManager;
 import com.xwkj.project.service.common.ManagerTemplate;
 import net.sf.json.JSONObject;
@@ -40,5 +41,9 @@ public class ConfigManagerImpl extends ManagerTemplate implements ConfigManager 
         return true;
     }
 
+    @RemoteMethod
+    public Global getGlobal() {
+        return configComponent.global;
+    }
 
 }

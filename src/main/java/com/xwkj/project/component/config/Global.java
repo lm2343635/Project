@@ -1,7 +1,9 @@
 package com.xwkj.project.component.config;
 
 import net.sf.json.JSONObject;
+import org.directwebremoting.annotations.DataTransferObject;
 
+@DataTransferObject
 public class Global {
 
     public String name;

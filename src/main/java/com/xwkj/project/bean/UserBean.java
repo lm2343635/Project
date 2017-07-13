@@ -45,12 +45,14 @@ public class UserBean {
         this.createAt = createAt;
     }
 
-    public UserBean(User user) {
+    public UserBean(User user, boolean safe) {
         super();
         this.uid = user.getUid();
         this.uname = user.getUname();
-        this.password = user.getPassword();
         this.createAt = new Date(user.getCreateAt());
+        if (!safe) {
+            this.password = user.getPassword();
+        }
     }
 
 }

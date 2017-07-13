@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>Tsukuba Mate</title>
+    <title>用户管理</title>
     <link href="/static/images/favicon.ico" type="image/x-icon" rel="icon">
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
     <link href="/static/css/bootstrap-switch.min.css" rel="stylesheet">
@@ -21,7 +21,7 @@
     <script src="/dwr/interface/UserManager.js"></script>
     <script src="/static/js/admin/users.js"></script>
     <style>
-        #create-option {
+        #create-user {
             cursor: pointer
         }
 
@@ -48,8 +48,8 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h1 class="panel-title">
-                <span>人员管理</span>
-                <i id="create-option" class="fa fa-plus pull-right" data-toggle="modal" data-target="#create-user-modal"></i>
+                <span>用户管理</span>
+                <i id="create-user" class="fa fa-plus pull-right" data-toggle="modal" data-target="#create-user-modal"></i>
             </h1>
         </div>
         <table id="user-list" class="table">
@@ -58,6 +58,7 @@
                 <th>创建时间</th>
                 <th>姓名</th>
                 <th>密码</th>
+                <th>工程</th>
                 <th>删除</th>
             </tr>
             </thead>
@@ -66,6 +67,7 @@
                 <td>${createAt}$</td>
                 <td class="user-list-uname">${uname}$</td>
                 <td>${password}$</td>
+                <td><a href="projects.html?uid=${uid}$"><i class="fa fa-lg fa-file-text text-success"></i></a></td>
                 <td class="user-list-remove"><i class="fa fa-lg fa-trash-o text-danger"></i></td>
             </tr>
             </tbody>

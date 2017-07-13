@@ -53,7 +53,7 @@ public class UserManagerImpl extends ManagerTemplate implements UserManager {
         if (user == null) {
             return null;
         }
-        return new UserBean(user);
+        return new UserBean(user, true);
     }
 
     @RemoteMethod
@@ -63,7 +63,7 @@ public class UserManagerImpl extends ManagerTemplate implements UserManager {
         }
         List<UserBean> userBeans = new ArrayList<UserBean>();
         for (User user : userDao.findAll()) {
-            userBeans.add(new UserBean(user));
+            userBeans.add(new UserBean(user, false));
         }
         return userBeans;
     }
@@ -89,7 +89,7 @@ public class UserManagerImpl extends ManagerTemplate implements UserManager {
         if (!user.getPassword().equals(password)) {
             return false;
         }
-        UserBean userBean = new UserBean(user);
+        UserBean userBean = new UserBean(user, true);
         session.setAttribute(USER_FLAG, userBean);
         return true;
     }
