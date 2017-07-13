@@ -18,17 +18,30 @@ import java.util.List;
 public class UserManagerImpl extends ManagerTemplate implements UserManager {
 
     @RemoteMethod
+    public boolean isUserExist(String name) {
+        User user = userDao.findUserByName(name);
+        return user != null;
+    }
+
+    @RemoteMethod
     @Transactional
-    public String addUser(String uname, String password) {
+    public String addUser(String uname, String password, HttpSession session) {
+        if (!checkAdminSession(session)) {
+            return null;
+        }
         User user = new User();
         user.setUname(uname);
         user.setPassword(password);
+        user.setCreateAt(System.currentTimeMillis());
         return userDao.save(user);
     }
 
     @RemoteMethod
     @Transactional
-    public boolean deleteUser(String uid) {
+    public boolean removeUser(String uid, HttpSession session) {
+        if (!checkAdminSession(session)) {
+            return false;
+        }
         User user = userDao.get(uid);
         userDao.delete(user);
         return true;
@@ -43,6 +56,7 @@ public class UserManagerImpl extends ManagerTemplate implements UserManager {
         return new UserBean(user);
     }
 
+    @RemoteMethod
     public List<UserBean> getAll(HttpSession session) {
         if (!checkAdminSession(session)) {
             return null;
@@ -72,12 +86,12 @@ public class UserManagerImpl extends ManagerTemplate implements UserManager {
         if (user == null) {
             return false;
         }
-        if (user.getPassword().equals(password)) {
-            UserBean userBean = new UserBean(user);
-            session.setAttribute(USER_FLAG, userBean);
-            return true;
+        if (!user.getPassword().equals(password)) {
+            return false;
         }
-        return false;
+        UserBean userBean = new UserBean(user);
+        session.setAttribute(USER_FLAG, userBean);
+        return true;
     }
 
     @RemoteMethod

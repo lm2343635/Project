@@ -14,6 +14,9 @@ public class User implements Serializable {
     @GenericGenerator(name = "uuid", strategy = "uuid")
     private String uid;
 
+    @Column(nullable = false)
+    private Long createAt;
+
     @Column(unique = true, nullable = false)
     private String uname;
 
@@ -26,6 +29,14 @@ public class User implements Serializable {
 
     public void setUid(String uid) {
         this.uid = uid;
+    }
+
+    public Long getCreateAt() {
+        return createAt;
+    }
+
+    public void setCreateAt(Long createAt) {
+        this.createAt = createAt;
     }
 
     public String getUname() {

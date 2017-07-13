@@ -11,21 +11,29 @@ public interface UserManager {
     public static final String USER_FLAG = "8aa501824fb5fb3c014fb607fe100000";
 
     /**
-     * 新增用户
+     * Is user name existing in user list.
+     *
+     * @param name
+     * @return
+     */
+    boolean isUserExist(String name);
+
+    /**
+     * Admin add new user.
      *
      * @param uname
      * @param password
      * @return
      */
-    String addUser(String uname, String password);
+    String addUser(String uname, String password, HttpSession session);
 
     /**
-     * 删除用户
+     * Admin remove a user
      *
      * @param uid
      * @return
      */
-    boolean deleteUser(String uid);
+    boolean removeUser(String uid, HttpSession session);
 
     /**
      * 通过uid获得用户

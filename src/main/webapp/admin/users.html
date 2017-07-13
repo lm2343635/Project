@@ -18,6 +18,7 @@
     <script src="/static/js/tools.js"></script>
     <script src="/dwr/engine.js"></script>
     <script src="/dwr/interface/AdminManager.js"></script>
+    <script src="/dwr/interface/UserManager.js"></script>
     <script src="/static/js/admin/users.js"></script>
     <style>
         #create-option {
@@ -34,13 +35,8 @@
             margin-bottom: 0;
         }
 
-        #option-list .option-list-template i,
-        #option-list .option-list-template {
+        #user-list .user-list-template i {
             cursor: pointer;
-        }
-
-        #option-list .option-list-icon img {
-            height: 23px;
         }
     </style>
 </head>
@@ -68,7 +64,7 @@
             <tbody>
             <tr id="${uid}$" class="mengular-template user-list-template">
                 <td>${createAt}$</td>
-                <td class="user-list-name">${name}$</td>
+                <td class="user-list-uname">${uname}$</td>
                 <td>${password}$</td>
                 <td class="user-list-remove"><i class="fa fa-lg fa-trash-o text-danger"></i></td>
             </tr>
