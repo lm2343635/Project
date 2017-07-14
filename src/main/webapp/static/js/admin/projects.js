@@ -33,6 +33,20 @@ function loadProjects() {
                 updateAt: project.updateAt.format(DATE_HOUR_MINUTE_FORMAT),
                 name: project.name
             });
+
+            $("#" + project.pid + " .project-list-remove").click(function () {
+                var pid = $(this).mengularId();
+                var name = $("#" + pid + " .project-list-name").text();
+                $.messager.confirm("警告", "确认删除工程" + name + "吗？", function () {
+                    ProjectManager.removeProject(pid, function (success) {
+                        if (!success) {
+                            location.href = "session.html";
+                            return;
+                        }
+                        $("#" + pid).remove();
+                    });
+                });
+            });
         }
     });
 }
