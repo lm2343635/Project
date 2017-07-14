@@ -46,6 +46,15 @@ public interface ProjectManager {
     List<ProjectBean> search(String name, HttpSession session);
 
     /**
+     * Admin get projects by uid.
+     *
+     * @param uid
+     * @param session
+     * @return
+     */
+    List<ProjectBean> getProjectsByUid(String uid, HttpSession session);
+
+    /**
      * Get projects list for a user.
      *
      * @param session

@@ -80,6 +80,22 @@ public class ProjectManagerImpl extends ManagerTemplate implements ProjectManage
     }
 
     @RemoteMethod
+    public List<ProjectBean> getProjectsByUid(String uid, HttpSession session) {
+        if (!checkAdminSession(session)) {
+            return null;
+        }
+        User user = userDao.get(uid);
+        if (user == null) {
+            return null;
+        }
+        List<ProjectBean> projectBeans = new ArrayList<ProjectBean>();
+        for (Project project : projectDao.findByUser(user)) {
+            projectBeans.add(new ProjectBean(project, true));
+        }
+        return projectBeans;
+    }
+
+    @RemoteMethod
     public List<ProjectBean> getProjectsForUser(HttpSession session) {
         User user = getUserFromSession(session);
         if (user == null) {

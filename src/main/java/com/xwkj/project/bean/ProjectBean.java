@@ -1,18 +1,24 @@
 package com.xwkj.project.bean;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xwkj.project.domain.Project;
+import org.directwebremoting.annotations.DataTransferObject;
 
+import java.io.IOException;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
+@DataTransferObject
 public class ProjectBean {
 
     private String pid;
     private String name;
     private Date createAt;
     private Date updateAt;
-    private String attributes;
+    private Map<String, String> attributes;
     private String content;
+    private String uid;
 
     public String getPid() {
         return pid;
@@ -46,11 +52,19 @@ public class ProjectBean {
         this.updateAt = updateAt;
     }
 
-    public String getAttributes() {
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public Map<String, String> getAttributes() {
         return attributes;
     }
 
-    public void setAttributes(String attributes) {
+    public void setAttributes(Map<String, String> attributes) {
         this.attributes = attributes;
     }
 
@@ -67,8 +81,13 @@ public class ProjectBean {
         this.name = project.getName();
         this.createAt = new Date(project.getCreateAt());
         this.updateAt = new Date(project.getUpdateAt());
+        this.uid = project.getUser().getUid();
         if (!simple) {
-            this.attributes = project.getAttributes();
+            try {
+                this.attributes = new ObjectMapper().readValue(project.getAttributes(), HashMap.class);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             this.content = project.getContent();
         }
     }

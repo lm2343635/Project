@@ -14,9 +14,25 @@ $(document).ready(function () {
             $("#project-panel .panel-title").fillText({
                 uname: user.uname
             });
+
+            loadProjects();
         });
     });
 
-
-
 });
+
+function loadProjects() {
+    ProjectManager.getProjectsByUid(uid, function (projects) {
+        $("#project-list tbody").mengularClear();
+
+        for (var i in projects) {
+            var project = projects[i];
+            $("#project-list tbody").mengular(".project-list-template", {
+                pid: project.pid,
+                createAt: project.createAt.format(DATE_HOUR_MINUTE_FORMAT),
+                updateAt: project.updateAt.format(DATE_HOUR_MINUTE_FORMAT),
+                name: project.name
+            });
+        }
+    });
+}

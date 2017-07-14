@@ -53,21 +53,23 @@
                 <a id="create-project"><i class="fa fa-plus pull-right"></i></a>
             </h1>
         </div>
-        <table id="user-list" class="table">
+        <table id="project-list" class="table">
             <thead>
             <tr>
                 <th>创建时间</th>
                 <th>更新时间</th>
                 <th>工程名称</th>
+                <th>编辑</th>
                 <th>删除</th>
             </tr>
             </thead>
             <tbody>
-            <tr id="${uid}$" class="mengular-template user-list-template">
+            <tr id="${pid}$" class="mengular-template project-list-template">
                 <td>${createAt}$</td>
-                <td class="user-list-uname">${uname}$</td>
-                <td>${password}$</td>
-                <td class="user-list-remove"><i class="fa fa-lg fa-trash-o text-danger"></i></td>
+                <td>${updateAt}$</td>
+                <td class="project-list-name">${name}$</td>
+                <td class="project-list-edit"><a href="edit.html?pid=${pid}$"><i class="fa fa-lg fa-gear text-success"></i></a></td>
+                <td class="project-list-remove"><i class="fa fa-lg fa-trash-o text-danger"></i></td>
             </tr>
             </tbody>
         </table>
