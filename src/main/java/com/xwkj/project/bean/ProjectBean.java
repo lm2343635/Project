@@ -1,11 +1,8 @@
 package com.xwkj.project.bean;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xwkj.project.domain.Project;
 
-import java.io.IOException;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 
 public class ProjectBean {
@@ -14,7 +11,7 @@ public class ProjectBean {
     private String name;
     private Date createAt;
     private Date updateAt;
-    private Map<String, String> attributes;
+    private String attributes;
     private String content;
 
     public String getPid() {
@@ -49,11 +46,11 @@ public class ProjectBean {
         this.updateAt = updateAt;
     }
 
-    public Map<String, String> getAttributes() {
+    public String getAttributes() {
         return attributes;
     }
 
-    public void setAttributes(Map<String, String> attributes) {
+    public void setAttributes(String attributes) {
         this.attributes = attributes;
     }
 
@@ -71,11 +68,7 @@ public class ProjectBean {
         this.createAt = new Date(project.getCreateAt());
         this.updateAt = new Date(project.getUpdateAt());
         if (!simple) {
-            try {
-                this.attributes = new ObjectMapper().readValue(project.getAttributes(), HashMap.class);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            this.attributes = project.getAttributes();
             this.content = project.getContent();
         }
     }

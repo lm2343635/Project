@@ -6,7 +6,13 @@ $(document).ready(function () {
     checkAdminSession(function () {
 
         if (pid != "") {
+            ProjectManager.getProject(pid, function (project) {
+               if (project == null) {
+                   location.href = "link.html";
+                   return;
+               }
 
+            });
 
             return;
         }
@@ -39,6 +45,8 @@ $(document).ready(function () {
                     });
                 }
 
+                $("#project-attributes").mengularClearTemplate();
+
                 $("#project-content").summernote({
                     toolbar: SUMMERNOTE_TOOLBAR_FULL,
                     lang: "zh-CN",
@@ -51,5 +59,28 @@ $(document).ready(function () {
     });
 
 
+    $("#project-submit").click(function () {
+        var name = $("#project-name input").val();
+        if (name == "" || name == null) {
+            $.messager.popup("名称不能为空！");
+            return;
+        }
+        var attributes = [];
+        $(".attribute-list-template").each(function() {
+            attributes[$(this).attr("id")] = $(this).find("input").val();
+        });
+        var content = $("#project-content").summernote("code");
+        $(this).attr("disabled", "disabled");
+        ProjectManager.addProject(name, JSON.stringify(attributes), content, uid, function (pid) {
+            if (pid == null) {
+                location.href = "session.html";
+                return;
+            }
+            $.messager.popup("保存成功！");
+            setTimeout(function () {
+                location.href = "edit.html?pid=" + pid;
+            }, 1000);
+        });
+    });
 
 });
