@@ -1,6 +1,7 @@
-var LoginSuccessPage = "users.html";
+var LoginSuccessPage = "projects.html";
 
 $(document).ready(function () {
+
     $("#login-submit").click(function () {
         var name = $("#login-username").val();
         var password = $("#login-password").val();
@@ -18,7 +19,7 @@ $(document).ready(function () {
             $("#login-password").parent().removeClass("has-error");
         }
         if (validate) {
-            AdminManager.login(name, password, function (success) {
+            UserManager.login(name, password, function (success) {
                 if (!success) {
                     $("#login-username, #login-password").parent().addClass("has-error");
                     $.messager.popup("用户名或密码错误");

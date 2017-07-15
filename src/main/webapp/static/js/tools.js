@@ -1,3 +1,14 @@
+function checkSession(done) {
+    UserManager.checkSession(function (user) {
+        if (user == null) {
+            location.href = "session.html";
+            return null;
+        } else {
+            done(user);
+        }
+    });
+}
+
 function checkAdminSession(done) {
     AdminManager.checkSession(function (username) {
         if (username == null) {

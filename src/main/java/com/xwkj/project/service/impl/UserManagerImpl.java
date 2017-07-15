@@ -70,9 +70,9 @@ public class UserManagerImpl extends ManagerTemplate implements UserManager {
 
     @RemoteMethod
     @Transactional
-    public boolean modifyPassword(String uid, String old, String password) {
-        User user = userDao.get(uid);
-        if (!user.getPassword().equals(old)) {
+    public boolean modifyPassword(String old, String password, HttpSession session) {
+        User user = getUserFromSession(session);
+        if (user == null) {
             return false;
         }
         user.setPassword(password);
@@ -97,15 +97,6 @@ public class UserManagerImpl extends ManagerTemplate implements UserManager {
     @RemoteMethod
     public UserBean checkSession(HttpSession session) {
         return getUserBeanFromSession(session);
-    }
-
-    @RemoteMethod
-    @Transactional
-    public void modifyUserInfo(String uid, String uname, String password, String tid) {
-        User user = userDao.get(uid);
-        user.setUname(uname);
-        user.setPassword(password);
-        userDao.update(user);
     }
 
 }

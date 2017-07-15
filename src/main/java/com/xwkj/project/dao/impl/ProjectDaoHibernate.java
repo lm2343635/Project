@@ -22,7 +22,7 @@ public class ProjectDaoHibernate extends BaseHibernateDaoSupport<Project> implem
     }
 
     public List<Project> findByUser(User user) {
-        String hql = "from Project where user = ?";
+        String hql = "from Project where user = ? order by updateAt desc";
         return (List<Project>) getHibernateTemplate().find(hql, user);
     }
 

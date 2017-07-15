@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>我的工程</title>
+    <link href="/static/images/favicon.ico" type="image/x-icon" rel="icon">
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/static/css/mengular.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/jquery.bootstrap.min.js"></script>
+    <script src="/static/js/mengular.js"></script>
+    <script src="/static/js/tools.js"></script>
+    <script src="/dwr/engine.js"></script>
+    <script src="/dwr/interface/UserManager.js"></script>
+    <script src="/dwr/interface/ProjectManager.js"></script>
+    <script src="/static/js/user/projects.js"></script>
+    <style>
+        #modify-password-modal .modal-dialog .modal-content .modal-body .input-group {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+<div id="main-container" class="container">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed glyphicon glyphicon-th-list" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1"></button>
+                <a class="navbar-brand" href="javascript:history.go(0)">我的工程</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul id="list-nav" class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">
+                            <span id="user-name"></span>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a data-toggle="modal" data-target="#modify-password-modal">修改密码</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="/logout/user">退出</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div id="types-panel" class="panel panel-default">
+        <div class="panel-heading">
+            <h1 class="panel-title">工程列表</h1>
+        </div>
+        <div id="project-list" class="list-group">
+            <div id="${pid}$" class="list-group-item mengular-template project-list-template">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-7">
+                        <a href="project.html?pid=${pid}$">${name}$</a>
+                    </div>
+                    <div class="col-xs-12 col-sm-5">
+                        <span class="pull-right">更新于${updateAt}$</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="modify-password-modal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="glyphicon glyphicon-remove pull-right" data-dismiss="modal"></span>
+                <h4 class="modal-title">修改密码</h4>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <span class="input-group-addon form-icon"><i class="fa fa-key fa-lg"></i></span>
+                    <input id="modify-password-new" type="text" class="form-control" placeholder="新密码">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">取消</button>
+                <button id="modify-password-submit" type="button" class="btn btn-success">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

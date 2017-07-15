@@ -52,13 +52,13 @@ public interface UserManager {
     List<UserBean> getAll(HttpSession session);
 
     /**
-     * 修改密码
+     * User modify password
      *
-     * @param uid
      * @param old
      * @param password
+     * @param session
      */
-    boolean modifyPassword(String uid, String old, String password);
+    boolean modifyPassword(String old, String password, HttpSession session);
 
     /**
      * 处理用户登录
@@ -77,16 +77,5 @@ public interface UserManager {
      * @return
      */
     UserBean checkSession(HttpSession session);
-
-    /**
-     * 管理员修改用户信息
-     *
-     * @param uid
-     * @param uname
-     * @param password
-     * @param tid
-     * @return
-     */
-    void modifyUserInfo(String uid, String uname, String password, String tid);
 
 }
