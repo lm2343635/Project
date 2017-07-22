@@ -8,11 +8,19 @@ import java.util.List;
 public interface UserDao extends BaseDao<User> {
 
     /**
-     * 根据用户名查找用户
+     * Find user by name
      *
      * @param uname
      * @return
      */
-    User findUserByName(String uname);
+    User getByName(String uname);
+
+    /**
+     * Search user by keyword of name
+     *
+     * @param keyword
+     * @return
+     */
+    List<User> searchByName(String keyword);
 
 }

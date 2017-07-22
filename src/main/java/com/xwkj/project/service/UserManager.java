@@ -46,10 +46,11 @@ public interface UserManager {
     /**
      * Get all user list for admin.
      *
+     * @param keyword
      * @param session
      * @return
      */
-    List<UserBean> getAll(HttpSession session);
+    List<UserBean> search(String keyword, HttpSession session);
 
     /**
      * User modify password

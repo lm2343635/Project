@@ -15,7 +15,7 @@ public class UserDaoHibernate extends BaseHibernateDaoSupport<User> implements U
         setClass(User.class);
     }
 
-    public User findUserByName(String uname) {
+    public User getByName(String uname) {
         String hql = "from User where uname = ?";
         List<User> users = (List<User>) getHibernateTemplate().find(hql, uname);
         if (users.size() > 0) {
@@ -24,4 +24,8 @@ public class UserDaoHibernate extends BaseHibernateDaoSupport<User> implements U
         return null;
     }
 
+    public List<User> searchByName(String keyword) {
+        String hql = "from User where uname like ?";
+        return (List<User>) getHibernateTemplate().find(hql, "%" + keyword + "%");
+    }
 }

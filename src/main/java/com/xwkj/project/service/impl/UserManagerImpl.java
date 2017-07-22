@@ -19,7 +19,7 @@ public class UserManagerImpl extends ManagerTemplate implements UserManager {
 
     @RemoteMethod
     public boolean isUserExist(String name) {
-        User user = userDao.findUserByName(name);
+        User user = userDao.getByName(name);
         return user != null;
     }
 
@@ -57,12 +57,15 @@ public class UserManagerImpl extends ManagerTemplate implements UserManager {
     }
 
     @RemoteMethod
-    public List<UserBean> getAll(HttpSession session) {
+    public List<UserBean> search(String keyword, HttpSession session) {
         if (!checkAdminSession(session)) {
             return null;
         }
+        if (keyword == null) {
+            keyword = "";
+        }
         List<UserBean> userBeans = new ArrayList<UserBean>();
-        for (User user : userDao.findAll()) {
+        for (User user : userDao.searchByName(keyword)) {
             userBeans.add(new UserBean(user, false));
         }
         return userBeans;
@@ -82,7 +85,7 @@ public class UserManagerImpl extends ManagerTemplate implements UserManager {
 
     @RemoteMethod
     public boolean login(String uname, String password, HttpSession session) {
-        User user = userDao.findUserByName(uname);
+        User user = userDao.getByName(uname);
         if (user == null) {
             return false;
         }
