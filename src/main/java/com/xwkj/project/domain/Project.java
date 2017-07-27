@@ -23,6 +23,9 @@ public class Project implements Serializable {
     @Column(nullable = false)
     private Long updateAt;
 
+    @Column(nullable = false)
+    private Long expireAt;
+
     @Column(columnDefinition = "LONGTEXT", nullable = false)
     private String attributes;
 
@@ -63,6 +66,14 @@ public class Project implements Serializable {
 
     public void setUpdateAt(Long updateAt) {
         this.updateAt = updateAt;
+    }
+
+    public Long getExpireAt() {
+        return expireAt;
+    }
+
+    public void setExpireAt(Long expireAt) {
+        this.expireAt = expireAt;
     }
 
     public String getAttributes() {

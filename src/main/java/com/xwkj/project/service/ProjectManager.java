@@ -16,7 +16,7 @@ public interface ProjectManager {
      * @param uid
      * @return
      */
-    String addProject(String name, String attributes, String content, String uid, HttpSession session);
+    String addProject(String name, String attributes, String content, long expireAt, String uid, HttpSession session);
 
     /**
      * Admin modify a project.
@@ -27,7 +27,7 @@ public interface ProjectManager {
      * @param content
      * @return
      */
-    boolean modifyProject(String pid, String name, String attributes, String content, HttpSession session);
+    boolean modifyProject(String pid, String name, String attributes, String content, long expireAt, HttpSession session);
 
     /**
      * Admin remove a project.

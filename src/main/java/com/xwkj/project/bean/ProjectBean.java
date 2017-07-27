@@ -16,6 +16,7 @@ public class ProjectBean {
     private String name;
     private Date createAt;
     private Date updateAt;
+    private Date expireAt;
     private Map<String, String> attributes;
     private String content;
     private String uid;
@@ -50,6 +51,14 @@ public class ProjectBean {
 
     public void setUpdateAt(Date updateAt) {
         this.updateAt = updateAt;
+    }
+
+    public Date getExpireAt() {
+        return expireAt;
+    }
+
+    public void setExpireAt(Date expireAt) {
+        this.expireAt = expireAt;
     }
 
     public String getUid() {

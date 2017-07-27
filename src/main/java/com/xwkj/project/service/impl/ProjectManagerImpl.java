@@ -20,7 +20,7 @@ public class ProjectManagerImpl extends ManagerTemplate implements ProjectManage
 
     @RemoteMethod
     @Transactional
-    public String addProject(String name, String attributes, String content, String uid, HttpSession session) {
+    public String addProject(String name, String attributes, String content, long expireAt, String uid, HttpSession session) {
         if (!checkAdminSession(session)) {
             return null;
         }
@@ -34,13 +34,14 @@ public class ProjectManagerImpl extends ManagerTemplate implements ProjectManage
         project.setContent(content);
         project.setCreateAt(System.currentTimeMillis());
         project.setUpdateAt(project.getCreateAt());
+        project.setExpireAt(expireAt);
         project.setUser(user);
         return projectDao.save(project);
     }
 
     @RemoteMethod
     @Transactional
-    public boolean modifyProject(String pid, String name, String attributes, String content, HttpSession session) {
+    public boolean modifyProject(String pid, String name, String attributes, String content, long expireAt, HttpSession session) {
         if (!checkAdminSession(session)) {
             return false;
         }
@@ -52,6 +53,7 @@ public class ProjectManagerImpl extends ManagerTemplate implements ProjectManage
         project.setAttributes(attributes);
         project.setContent(content);
         project.setUpdateAt(System.currentTimeMillis());
+        project.setExpireAt(expireAt);
         projectDao.update(project);
         return true;
     }
