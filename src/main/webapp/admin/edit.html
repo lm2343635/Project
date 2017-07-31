@@ -8,12 +8,15 @@
     <link href="/static/images/favicon.ico" type="image/x-icon" rel="icon">
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
     <link href="/static/css/bootstrap-switch.min.css" rel="stylesheet">
+    <link href="/static/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
     <link href="/static/css/font-awesome.min.css" rel="stylesheet">
     <link href="/static/css/summernote.min.css" rel="stylesheet">
     <link href="/static/css/mengular.css" rel="stylesheet">
     <script src="/static/js/jquery.min.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
     <script src="/static/js/bootstrap-switch.min.js"></script>
+    <script src="/static/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="/static/js/bootstrap-datetimepicker.zh-CN.js"></script>
     <script src="/static/js/jquery.bootstrap.min.js"></script>
     <script src="/static/js/summernote.min.js"></script>
     <script src="/static/js/summernote-zh-CN.js"></script>
@@ -60,6 +63,14 @@
             <div id="project-name" class="list-group-item">
                 <div class="form-group">
                     <label class="col-xs-12 col-sm-3 control-label">@{name}</label>
+                    <div class="col-xs-12 col-sm-9">
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div id="project-expire" class="list-group-item">
+                <div class="form-group">
+                    <label class="col-xs-12 col-sm-3 control-label">有效期限</label>
                     <div class="col-xs-12 col-sm-9">
                         <input type="text" class="form-control">
                     </div>

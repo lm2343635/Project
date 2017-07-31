@@ -20,8 +20,9 @@ public interface ProjectDao extends BaseDao<Project> {
      * Find projects by user.
      *
      * @param user
+     * @param expire
      * @return
      */
-    List<Project> findByUser(User user);
+    List<Project> findByUser(User user, boolean expire);
 
 }

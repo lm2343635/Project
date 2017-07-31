@@ -1,5 +1,6 @@
 package com.xwkj.project.service.impl;
 
+import com.xwkj.common.util.DateTool;
 import com.xwkj.project.bean.ProjectBean;
 import com.xwkj.project.domain.Project;
 import com.xwkj.project.domain.User;
@@ -20,7 +21,7 @@ public class ProjectManagerImpl extends ManagerTemplate implements ProjectManage
 
     @RemoteMethod
     @Transactional
-    public String addProject(String name, String attributes, String content, long expireAt, String uid, HttpSession session) {
+    public String addProject(String name, String attributes, String content, String expireAt, String uid, HttpSession session) {
         if (!checkAdminSession(session)) {
             return null;
         }
@@ -34,14 +35,14 @@ public class ProjectManagerImpl extends ManagerTemplate implements ProjectManage
         project.setContent(content);
         project.setCreateAt(System.currentTimeMillis());
         project.setUpdateAt(project.getCreateAt());
-        project.setExpireAt(expireAt);
+        project.setExpireAt(DateTool.transferDate(expireAt, DateTool.YEAR_MONTH_DATE_FORMAT).getTime());
         project.setUser(user);
         return projectDao.save(project);
     }
 
     @RemoteMethod
     @Transactional
-    public boolean modifyProject(String pid, String name, String attributes, String content, long expireAt, HttpSession session) {
+    public boolean modifyProject(String pid, String name, String attributes, String content, String expireAt, HttpSession session) {
         if (!checkAdminSession(session)) {
             return false;
         }
@@ -53,7 +54,7 @@ public class ProjectManagerImpl extends ManagerTemplate implements ProjectManage
         project.setAttributes(attributes);
         project.setContent(content);
         project.setUpdateAt(System.currentTimeMillis());
-        project.setExpireAt(expireAt);
+        project.setExpireAt(DateTool.transferDate(expireAt, DateTool.YEAR_MONTH_DATE_FORMAT).getTime());
         projectDao.update(project);
         return true;
     }
@@ -91,7 +92,7 @@ public class ProjectManagerImpl extends ManagerTemplate implements ProjectManage
             return null;
         }
         List<ProjectBean> projectBeans = new ArrayList<ProjectBean>();
-        for (Project project : projectDao.findByUser(user)) {
+        for (Project project : projectDao.findByUser(user, false)) {
             projectBeans.add(new ProjectBean(project, true));
         }
         return projectBeans;
@@ -104,7 +105,7 @@ public class ProjectManagerImpl extends ManagerTemplate implements ProjectManage
             return null;
         }
         List<ProjectBean> projectBeans = new ArrayList<ProjectBean>();
-        for (Project project : projectDao.findByUser(user)) {
+        for (Project project : projectDao.findByUser(user, true)) {
             projectBeans.add(new ProjectBean(project, true));
         }
         return projectBeans;

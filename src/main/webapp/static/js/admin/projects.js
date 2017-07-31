@@ -31,6 +31,7 @@ function loadProjects() {
                 pid: project.pid,
                 createAt: project.createAt.format(DATE_HOUR_MINUTE_FORMAT),
                 updateAt: project.updateAt.format(DATE_HOUR_MINUTE_FORMAT),
+                expireAt: project.expireAt.format(YEAR_MONTH_DATE_FORMAT),
                 name: project.name
             });
 

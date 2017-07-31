@@ -3,6 +3,15 @@ var pid = request("pid");
 
 $(document).ready(function () {
 
+    $("#project-expire input").datetimepicker({
+        format: "yyyy-mm-dd",
+        autoclose: true,
+        todayBtn: true,
+        startView: 2,
+        minView: 2,
+        language: "zh-CN"
+    });
+
     checkAdminSession(function () {
 
         ConfigManager.getConfigObject(function (config) {
@@ -34,6 +43,8 @@ $(document).ready(function () {
                     loadUserInfo(project.uid);
 
                     $("#project-name input").val(project.name);
+                    $("#project-expire input").val(project.expireAt.format(YEAR_MONTH_DATE_FORMAT));
+
                     for (var attributeName in project.attributes) {
                         $("#project-attributes").mengular(".attribute-list-template", {
                             attributeName: attributeName,
@@ -76,6 +87,11 @@ $(document).ready(function () {
             $.messager.popup("名称不能为空！");
             return;
         }
+        var exipre = $("#project-expire input").val();
+        if (exipre == "" || exipre == null) {
+            $.messager.popup("有效期限不能为空！");
+            return;
+        }
         var attributes = {};
         $(".attribute-list-template").each(function() {
             attributes[$(this).attr("id")] = $(this).find("input").val();
@@ -84,7 +100,7 @@ $(document).ready(function () {
         $(this).attr("disabled", "disabled");
 
         if (uid != "") {
-            ProjectManager.addProject(name, JSON.stringify(attributes), content, uid, function (pid) {
+            ProjectManager.addProject(name, JSON.stringify(attributes), content, exipre, uid, function (pid) {
                 if (pid == null) {
                     location.href = "session.html";
                     return;
@@ -98,7 +114,7 @@ $(document).ready(function () {
         }
 
         if (pid != "") {
-            ProjectManager.modifyProject(pid, name, JSON.stringify(attributes), content, function (success) {
+            ProjectManager.modifyProject(pid, name, JSON.stringify(attributes), content, exipre, function (success) {
                 if (!success) {
                     location.href = "session.html";
                     return;

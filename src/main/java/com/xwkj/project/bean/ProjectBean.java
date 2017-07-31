@@ -90,6 +90,7 @@ public class ProjectBean {
         this.name = project.getName();
         this.createAt = new Date(project.getCreateAt());
         this.updateAt = new Date(project.getUpdateAt());
+        this.expireAt = new Date(project.getExpireAt());
         this.uid = project.getUser().getUid();
         if (!simple) {
             try {

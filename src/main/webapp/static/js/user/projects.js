@@ -47,7 +47,8 @@ function loadUserProjects() {
             $("#project-list").mengular(".project-list-template", {
                 pid: project.pid,
                 name: project.name,
-                updateAt: project.updateAt.format(DATE_HOUR_MINUTE_FORMAT)
+                updateAt: project.updateAt.format(DATE_HOUR_MINUTE_FORMAT),
+                expireAt: project.expireAt.format(YEAR_MONTH_DATE_FORMAT)
             });
         }
     });
