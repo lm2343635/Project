@@ -55,6 +55,14 @@ public interface ProjectManager {
     List<ProjectBean> getProjectsByUid(String uid, HttpSession session);
 
     /**
+     * Admin get all unexpired projects.
+     *
+     * @param session
+     * @return
+     */
+    List<ProjectBean> getUnexpiredProjects(HttpSession session);
+
+    /**
      * Get projects list for a user.
      *
      * @param session

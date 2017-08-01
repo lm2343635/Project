@@ -33,4 +33,9 @@ public class ProjectDaoHibernate extends BaseHibernateDaoSupport<Project> implem
         }
     }
 
+    public List<Project> findUnexpired() {
+        String hql = "from Project where expireAt >= ? order by expireAt";
+        return (List<Project>) getHibernateTemplate().find(hql, DateTool.previousDay(new Date()).getTime());
+    }
+
 }

@@ -25,4 +25,10 @@ public interface ProjectDao extends BaseDao<Project> {
      */
     List<Project> findByUser(User user, boolean expire);
 
+    /**
+     * Find all unexpired
+     * @return
+     */
+    List<Project> findUnexpired();
+
 }

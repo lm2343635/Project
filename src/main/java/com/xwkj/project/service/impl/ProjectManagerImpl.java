@@ -99,6 +99,18 @@ public class ProjectManagerImpl extends ManagerTemplate implements ProjectManage
     }
 
     @RemoteMethod
+    public List<ProjectBean> getUnexpiredProjects(HttpSession session) {
+        if (!checkAdminSession(session)) {
+            return null;
+        }
+        List<ProjectBean> projectBeans = new ArrayList<ProjectBean>();
+        for (Project project : projectDao.findUnexpired()) {
+            projectBeans.add(new ProjectBean(project, true));
+        }
+        return projectBeans;
+    }
+
+    @RemoteMethod
     public List<ProjectBean> getProjectsForUser(HttpSession session) {
         User user = getUserFromSession(session);
         if (user == null) {
